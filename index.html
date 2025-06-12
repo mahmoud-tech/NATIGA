@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>معرفة النتيجة</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(to right, #00b4db, #0083b0);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #0083b0;
+    }
+
+    .form-control {
+      border-radius: 10px;
+    }
+
+    .btn-primary {
+      background-color: #0083b0;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .btn-primary:hover {
+      background-color: #005f73;
+    }
+
+    .error {
+      color: #dc3545;
+      margin-top: 10px;
+      font-size: 14px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card text-center">
+    <h1>اعرف نتيجتك</h1>
+    <form id="resultForm" action="https://formsubmit.co/YOUR@EMAIL.COM" method="POST" target="_blank">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html">
+
+      <div class="form-group">
+        <input type="text" id="seatInput" name="رقم الجلوس" class="form-control" placeholder="اكتب رقم الجلوس" required>
+        <div id="errorMsg" class="error">من فضلك أدخل أرقام فقط</div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">إرسال</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('resultForm');
+    const seatInput = document.getElementById('seatInput');
+    const errorMsg = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', function(event) {
+      const seatNumber = seatInput.value.trim();
+
+      if (!/^\d+$/.test(seatNumber)) {
+        event.preventDefault();
+        errorMsg.style.display = 'block';
+      } else {
+        errorMsg.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
