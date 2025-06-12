@@ -2,16 +2,18 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>معرفة النتيجة</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
       background: linear-gradient(to right, #00b4db, #0083b0);
+      font-family: 'Cairo', sans-serif;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Cairo', sans-serif;
+      padding: 20px;
     }
 
     .card {
@@ -23,43 +25,19 @@
       max-width: 400px;
     }
 
-    h1 {
-      margin-bottom: 20px;
-      font-size: 28px;
-      font-weight: bold;
-      color: #0083b0;
-    }
-
-    .form-control {
-      border-radius: 10px;
-    }
-
-    .btn-primary {
-      background-color: #0083b0;
-      border: none;
-      border-radius: 10px;
-      padding: 10px;
-      font-weight: bold;
-    }
-
-    .btn-primary:hover {
-      background-color: #005f73;
-    }
-
     .error {
-      color: #dc3545;
+      color: red;
       margin-top: 10px;
-      font-size: 14px;
       display: none;
     }
   </style>
 </head>
 <body>
   <div class="card text-center">
-    <h1>اعرف نتيجتك</h1>
-    <form id="resultForm" action="https://formsubmit.co/YOUR@EMAIL.COM" method="POST" target="_blank">
+    <h1 class="mb-4">اعرف نتيجتك</h1>
+    <form id="resultForm" action="https://formsubmit.co/mahmoud313245@gmail.com" method="POST" target="_blank">
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html">
+      <input type="hidden" name="_next" value="thanks.html"> <!-- توجيه بعد الإرسال -->
 
       <div class="form-group">
         <input type="text" id="seatInput" name="رقم الجلوس" class="form-control" placeholder="اكتب رقم الجلوس" required>
@@ -76,7 +54,6 @@
 
     form.addEventListener('submit', function(event) {
       const seatNumber = seatInput.value.trim();
-
       if (!/^\d+$/.test(seatNumber)) {
         event.preventDefault();
         errorMsg.style.display = 'block';
