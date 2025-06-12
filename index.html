@@ -54,6 +54,8 @@
     <form id="resultForm" action="https://formsubmit.co/mahmoud313245@gmail.com" method="POST">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="thanks.html">
+      <input type="hidden" name="_subject" value="طلب نتيجة جديد">
+      <input type="hidden" name="_template" value="table">
 
       <div class="form-group">
         <input type="text" id="seatInput" name="رقم الجلوس" class="form-control form-control-lg" placeholder="اكتب رقم الجلوس هنا" required>
@@ -64,17 +66,18 @@
   </div>
 
   <script>
-    const form = document.getElementById('resultForm');
-    const seatInput = document.getElementById('seatInput');
-    const errorMsg = document.getElementById('errorMsg');
-
-    form.addEventListener('submit', function(event) {
-      const seatNumber = seatInput.value.trim();
+    document.getElementById('resultForm').addEventListener('submit', function(e) {
+      const seatNumber = document.getElementById('seatInput').value.trim();
+      const errorMsg = document.getElementById('errorMsg');
+      
       if (!/^\d+$/.test(seatNumber)) {
-        event.preventDefault();
+        e.preventDefault();
         errorMsg.style.display = 'block';
+        document.getElementById('seatInput').focus();
       } else {
         errorMsg.style.display = 'none';
+        // هنا يمكنك إضافة أي تحويل أو إجراءات إضافية قبل الإرسال
+        this.submit(); // هذه السطر يؤكد إرسال الفورم
       }
     });
   </script>
